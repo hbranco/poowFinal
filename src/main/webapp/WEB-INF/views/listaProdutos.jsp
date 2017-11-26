@@ -2,20 +2,21 @@
   Created by IntelliJ IDEA.
   User: branco
   Date: 26/11/17
-  Time: 02:17
+  Time: 18:22
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Controle Produção</title>
+    <title>Form Examples | Bootstrap Based Admin Template - Material Design</title>
     <!-- Favicon-->
     <link rel="icon" href="/public/images/Logo.png" type="image/png">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
@@ -29,15 +30,27 @@
     <!-- Animation Css -->
     <link href="/public/plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Morris Chart Css-->
-    <link href="/public/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <!-- Sweet Alert Css -->
+    <link href="/public/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 
+    <!-- Wait Me Css -->
+    <link href="/public/plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="/public/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="/public/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Custom Css -->
     <link href="/public/stylesheets/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="/public/stylesheets/themes/all-themes.css" rel="stylesheet" />
 </head>
+
+
+
+
 
 <body class="theme-purple">
 <!-- Page Loader -->
@@ -69,7 +82,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <span> ${usuario.usuario_nome} <i class="material-icons"> perm_identity </i></span>
+                        <span> ${usuario.usuario_nome} <i class="material-icons"> perm_identity </i></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header"> ${usuario.usuario_nome}</li>
@@ -134,31 +147,86 @@
     <!-- #END# Right Sidebar -->
 </section>
 
+
 <section class="content">
 
     <div class="container-fluid">
-        <div class="block-header">
-            <h2>DASHBOARD</h2>
-        </div>
 
-        <!-- Widgets -->
         <div class="row clearfix">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box bg-pink hover-expand-effect">
-                    <div class="icon">
-                        <i class="material-icons">playlist_add_check</i>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>
+                            TODOS OS PRODUTOS!
+                        </h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="content">
-                        <div class="text">NEW TASKS</div>
-                        <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
+                    <div class="body">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Data Fabricação</th>
+                                <th>Lote</th>
+                                <th>Tipo</th>
+                                <th>Ação</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Código</th>
+                                <th>Data Fabricação</th>
+                                <th>Lote</th>
+                                <th>Tipo</th>
+                                <th>Ação</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+
+
+                            <c:forEach var="produto" items="${produtos}">
+
+                                <tr>
+                                    <td>${produto.produto_codigo}</td>
+                                    <td>${produto.produto_data_fabricacao}</td>
+                                    <td>${produto.produto_lote}</td>
+                                    <td>${produto.produto_tipo_nome}</td>
+                                    <td>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="/editaproduto?id=${produto.produto_id}" type="button" class="btn btn-info btn-block">Editar</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="button" class="btn btn-danger btn-block">Excluir</button>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 </section>
+
+
 
 <!-- Jquery Core Js -->
 <script src="/public/plugins/jquery/jquery.min.js"></script>
@@ -166,6 +234,7 @@
 <!-- Bootstrap Core Js -->
 <script src="/public/plugins/bootstrap/js/bootstrap.js"></script>
 
+<!-- Select Plugin Js -->
 <!-- Select Plugin Js -->
 <script src="/public/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
@@ -175,30 +244,21 @@
 <!-- Waves Effect Plugin Js -->
 <script src="/public/plugins/node-waves/waves.js"></script>
 
-<!-- Jquery CountTo Plugin Js -->
-<script src="/public/plugins/jquery-countto/jquery.countTo.js"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="/public/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="/public/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
-<!-- Morris Plugin Js -->
-<script src="/public/plugins/raphael/raphael.min.js"></script>
-<script src="/public/plugins/morrisjs/morris.js"></script>
-
-<!-- ChartJs -->
-<script src="/public/plugins/chartjs/Chart.bundle.js"></script>
-
-<!-- Flot Charts Plugin Js -->
-<script src="/public/plugins/flot-charts/jquery.flot.js"></script>
-<script src="/public/plugins/flot-charts/jquery.flot.resize.js"></script>
-<script src="/public/plugins/flot-charts/jquery.flot.pie.js"></script>
-<script src="/public/plugins/flot-charts/jquery.flot.categories.js"></script>
-<script src="/public/plugins/flot-charts/jquery.flot.time.js"></script>
-
-<!-- Sparkline Chart Plugin Js -->
-<script src="/public/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
 <!-- Custom Js -->
 <script src="/public/js/admin.js"></script>
-<script src="/public/js/pages/index.js"></script>
-
+<script src="/public/js/pages/tables/jquery-datatable.js"></script>
 <!-- Demo Js -->
 <script src="/public/js/demo.js"></script>
 </body>

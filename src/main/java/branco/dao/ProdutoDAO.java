@@ -3,6 +3,7 @@ package branco.dao;
 
 import branco.model.Produto;
 import branco.model.ProdutoTipo;
+import branco.model.Usuario;
 import branco.util.ConectaPostgres;
 import org.springframework.stereotype.Repository;
 
@@ -27,8 +28,9 @@ public class ProdutoDAO {
         PreparedStatement stmt  = ConectaPostgres.getConexao().prepareStatement(sql);
         stmt.setInt(1, produto.getProduto_tipo_id());
         stmt.setString(2, produto.getProduto_codigo());
-        stmt.setInt(2, produto.getProduto_lote());
-        stmt.setString(2, produto.getProduto_data_fabricacao());
+        stmt.setInt(3, produto.getProduto_lote());
+        stmt.setString(4, produto.getProduto_data_fabricacao());
+        System.out.println("sql: " + stmt.toString());
         stmt.execute();
         return true;
     }
@@ -58,6 +60,77 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+
+
+    /**
+     * metodo para buscar um unico produto para edição
+     * @param id
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
+    public Produto getProduto(Integer id) throws SQLException, ClassNotFoundException {
+//        ArrayList<Produto> produtos = new ArrayList<>();
+
+        String sql = "select * from produto as p join produto_tipo as pt on p.produto_tipo_id = pt.produto_tipo_id where p.produto_deletado = '0' and produto_id = ?";
+        PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
+        stmt.setInt(1,id);
+        ResultSet rs = stmt.executeQuery();
+        Produto p = new Produto();
+        while (rs.next()){
+            p.setProduto_id(rs.getInt("produto_id"));
+            p.setProduto_tipo_id(rs.getInt("produto_tipo_id"));
+            p.setProduto_tipo_nome(rs.getString("produto_tipo_nome"));
+            p.setProduto_codigo(rs.getString("produto_codigo"));
+            p.setProduto_lote(rs.getInt("produto_lote"));
+            p.setProduto_data_fabricacao(rs.getString("produto_data_fabricacao"));
+//            produtos.add(p);
+        }
+        return p;
+    }
+
+
+    /**
+     * metodo para deletar um unico produto
+     * OBS: deleção logica
+     * @param id
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public Boolean deleteProduto(Integer id) throws SQLException, ClassNotFoundException {
+        String sql = "update produto set produto_deletado = '1' where = ?";
+        PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
+        stmt.setInt(1,id);
+        stmt.executeQuery();
+        return true;
+
+
+    }
+
+
+    /**
+     * metodo para update de produtos
+     * @param produto
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+    public Boolean updateProduto(Produto produto) throws SQLException, ClassNotFoundException {
+        String sql = "update produto set produto_tipo_id = ? , produto_codigo = ? , produto_lote = ?, produto_data_fabricacao = ? where produto_id = ?";
+        PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
+        stmt.setInt(1,produto.getProduto_tipo_id());
+        stmt.setString(2,produto.getProduto_codigo());
+        stmt.setInt(3,produto.getProduto_lote());
+        stmt.setString(4,produto.getProduto_data_fabricacao());
+        stmt.setInt(5,produto.getProduto_id());
+        System.out.println("sql: " + stmt.toString());
+        stmt.executeUpdate();
+        return true;
+
+    }
+
 
 
 

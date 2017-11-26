@@ -1,6 +1,12 @@
 package branco.model;
 
 
+import org.springframework.stereotype.Repository;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * -- auto-generated definition
  CREATE TABLE produto
@@ -18,13 +24,26 @@ package branco.model;
  );
 
  */
-
+@Repository
 public class Produto  extends ProdutoTipo{
     private Integer produto_id;
+
+    @NotEmpty
     private String produto_codigo;
+
+    @NotNull
+//    @Size(min=2)
     private Integer produto_lote;
+
+    @NotEmpty
     private String produto_data_fabricacao;
+
     private Boolean produto_deletado;
+
+
+
+
+
 
     public Integer getProduto_id() {
         return produto_id;
