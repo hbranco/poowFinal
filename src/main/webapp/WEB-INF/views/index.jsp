@@ -52,18 +52,31 @@
                     <div class="form-line">
                         <input type="password" class="form-control" name="usuario_senha" placeholder="usuario_senha" required>
                     </div>
+                    <span class="text text-capitalize text-danger"> ${erroSenha} </span>
                 </div>
                 <div class="row">
-                    <div class="col-xs-4">
-                        <button class="btn btn-block bg-pink waves-effect" type="submit">Entrar!</button>
-                    </div>
-                </div>
-                <div class="row m-t-15 m-b--20">
-                    <div class="col-xs-6">
-                        <a href="/novousuario">Nova Conta!</a>
+                    <div class="col-xs-4 pull-right">
+                        <button class="btn btn-block bg-green waves-effect" type="submit">Entrar!</button>
                     </div>
 
+                    <div class="col-xs-4 pull-left">
+                        <a href="/novousuario" class="btn btn-block bg-pink waves-effect" type="submit">Nova Conta!</a>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="text-center">
+                        <span class="text text-capitalize text-info">${usuarioInvalido}</span>
+                    </div>
+                </div>
+
+
+                <%--<div class="row m-t-15 m-b--20">--%>
+                    <%--<div class="col-xs-6">--%>
+                        <%--<a href="/novousuario">Nova Conta!</a>--%>
+                    <%--</div>--%>
+
+                <%--</div>--%>
             </form>
         </div>
     </div>

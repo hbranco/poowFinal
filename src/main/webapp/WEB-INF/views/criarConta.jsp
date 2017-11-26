@@ -48,7 +48,7 @@
                             <i class="material-icons">person</i>
                         </span>
                     <div class="form-line">
-                        <input type="text" class="form-control" name="usuario_nome" placeholder="Name Surname" required autofocus>
+                        <input type="text" class="form-control" name="usuario_nome" placeholder="Seu Usuario" required autofocus>
                     </div>
                 </div>
                 
@@ -57,22 +57,14 @@
                             <i class="material-icons">lock</i>
                         </span>
                     <div class="form-line">
-                        <input type="password" class="form-control" name="usuario_senha" id="usuario_senha" minlength="6" placeholder="senha" required>
+                        <input type="password" class="form-control" name="usuario_senha" id="usuario_senha" minlength="6" placeholder="digite uma senha" required>
                     </div>
                 </div>
-                <%--<div class="input-group">--%>
-                        <%--<span class="input-group-addon">--%>
-                            <%--<i class="material-icons">lock</i>--%>
-                        <%--</span>--%>
-                    <%--<div class="form-line">--%>
-                        <%--<input type="password" class="form-control" name="usuario_d" data-match="#usuario_senha"  data-match-error="Whoops, these don't match"  minlength="6" placeholder="Confirme a senha" required>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
 
-                <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">Cadastrar</button>
+                <button class="btn btn-block btn-lg bg-green waves-effect" type="submit">Cadastrar</button>
 
                 <div class="m-t-25 m-b--5 align-center">
-                    <a href="/">You already have a membership?</a>
+                    <a href="/">Já tem uma conta?</a>
                 </div>
             </form>
         </div>

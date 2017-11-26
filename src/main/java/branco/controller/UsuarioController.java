@@ -3,15 +3,14 @@ package branco.controller;
 
 import branco.dao.UsuarioDAO;
 import branco.model.Usuario;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
 
 
@@ -22,15 +21,24 @@ public class UsuarioController {
     @Autowired UsuarioDAO daoU;
 
     @PostMapping("/autenticar")
-    public String autenticar(Usuario usuario, Model model) throws SQLException, ClassNotFoundException {
-        System.out.println("aqi");
-        if(daoU.autentica(usuario)){
-            model.addAttribute("usuario", usuario);
-            return "dashboard";
-        }else {
-            return "index";
+    public String autenticar(@Valid Usuario usuario, BindingResult result, Model model) throws SQLException, ClassNotFoundException {
+       if(result.hasErrors()){
+           model.addAttribute("erroSenha", "a senha deve conter 6 digitos");
+           return "index";
+       }else {
+           if(daoU.autentica(usuario)){
+               model.addAttribute("usuario", usuario);
+               return "dashboard";
+           }else {
+               model.addAttribute("usuarioInvalido", "usuário não encontrado!");
+               return "index";
 
-        }
+           }
+
+       }
+
+
+
     }
 
 

@@ -11,7 +11,7 @@ public class Usuario {
     private String usuario_nome;
 
     @NotEmpty
-    @Size(min=3)
+    @Size(min=6)
     private String usuario_senha;
     private Boolean usuario_auth;
 
