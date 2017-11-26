@@ -6,7 +6,7 @@ package branco.model;
  */
 public class ProdutoTeste extends Produto{
     private Integer produto_teste_id;
-    private Integer produto_teste_tipo_id; // ve se vou mater até o final
+    private Integer produto_teste_tipo_id; // atributo do tipo de teste que está sendo realizado
     private String produto_teste_obs;
     private String produto_teste_data_inicio;
     private String produto_teste_data_final;
