@@ -3,11 +3,13 @@ package branco.controller;
 
 import branco.dao.UsuarioDAO;
 import branco.model.Usuario;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.SessionScope;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,6 +28,7 @@ public class UsuarioController {
        if(result.hasErrors()){
            model.addAttribute("erroSenha", "a senha deve conter 6 digitos");
            return "index";
+
        }else {
            if(daoU.autentica(usuario)){
                model.addAttribute("usuario", usuario);

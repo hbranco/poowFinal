@@ -163,7 +163,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Criar/Editar um Produto
+                            EDIÇÃO DE TESTE DE PRODUTO!
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -181,45 +181,23 @@
 
                     <div class="body">
 
-                        <c:choose>
-                        <c:when test="${produtoEdita.produto_id != null}">
+                            <form class="form-horizontal" action="/salvarEditaTeste" method="post">
 
-                            <form class="form-horizontal" action="/salvarProdutoEdita" method="post">
-                            </c:when>
-                            <c:otherwise>
-                                <form class="form-horizontal" action="/salvarProduto" method="post">
-                                </c:otherwise>
+                                <c:choose>
+                                    <c:when test="${produtoTeste.produto_teste_id!= null}">
+                                        <input type="hidden" name="produto_teste_id" value="${produtoTeste.produto_teste_id}">
+                                    </c:when>
                                 </c:choose>
 
 
-
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_codigo">Produto Código</label>
-                                    </div>
-                                    <c:choose>
-                                        <c:when test="${produtoEdita.produto_id != null}">
-                                            <input type="hidden" name="produto_id" value="${produtoEdita.produto_id}">
-                                        </c:when>
-                                    </c:choose>
-
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" id="produto_codigo"  name="produto_codigo" class="form-control" value="${produtoEdita.produto_codigo}" placeholder="EEAA123">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_lote">Produto Lote</label>
+                                        <label for="produto_codigo">Código do Produto</label>
                                     </div>
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="number" id="produto_lote"  name="produto_lote" class="form-control" value="${produtoEdita.produto_lote}" placeholder="0001">
+                                                <input type="text" id="produto_codigo"  name="produto_codigo"  readonly value="${produtoTeste.produto_codigo}" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -228,35 +206,31 @@
 
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_data_fabricacao">Data Fabricação</label>
+                                        <label for="produto_teste_data_inicio">Data Entrada</label>
                                     </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 col-xs-7">
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <input type="date" id="produto_data_fabricacao"  name="produto_data_fabricacao" value="${produtoEdita.produto_data_fabricacao}" class="form-control" placeholder="0001">
+                                                <input type="date" id="produto_teste_data_inicio"  name="produto_teste_data_inicio" value="${produtoTeste.produto_teste_data_inicio}" class="form-control" placeholder="0001">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-
-
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_tipo_id">Tipo do Produto</label>
+                                        <label for="produto_teste_obs">Observação de Teste</label>
                                     </div>
+
+
                                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <select id="produto_tipo_id" name="produto_tipo_id" class="form-control show-tick">
-                                            <%--<option value="">-- Please select --</option>--%>
-                                            <option value="1">A</option>
-                                            <option value="2">B</option>
-                                            <option value="3">C</option>
-                                            <option value="4">D</option>
-                                            <option value="5">E</option>
-                                        </select>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea type="text" id="produto_teste_obs"  name="produto_teste_obs" rows="3" class="form-control">${produtoTeste.produto_teste_obs}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
 
 
                                 <div class="row clearfix">

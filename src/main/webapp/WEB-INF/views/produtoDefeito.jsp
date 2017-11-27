@@ -1,16 +1,12 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: branco
   Date: 26/11/17
-  Time: 17:23
+  Time: 21:26
   To change this template use File | Settings | File Templates.
 --%>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 
@@ -42,6 +38,8 @@
     <!-- Bootstrap Select Css -->
     <link href="/public/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
+    <!-- JQuery DataTable Css -->
+    <link href="/public/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
     <!-- Custom Css -->
     <link href="/public/stylesheets/style.css" rel="stylesheet">
 
@@ -163,7 +161,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Criar/Editar um Produto
+                            PRODUTOS COM DEFEITOS!
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -178,97 +176,47 @@
                             </li>
                         </ul>
                     </div>
-
                     <div class="body">
+                        <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                            <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Data Fabricacao</th>
+                                <th>Data Entrada</th>
+                                <th>Lote</th>
+                                <th>Ação</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Código</th>
+                                <th>Data Fabricacao</th>
+                                <th>Data Entrada</th>
+                                <th>Lote</th>
+                                <th>Ação</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
 
-                        <c:choose>
-                        <c:when test="${produtoEdita.produto_id != null}">
 
-                            <form class="form-horizontal" action="/salvarProdutoEdita" method="post">
-                            </c:when>
-                            <c:otherwise>
-                                <form class="form-horizontal" action="/salvarProduto" method="post">
-                                </c:otherwise>
-                                </c:choose>
+                            <c:forEach var="produto" items="${defeito}">
 
-
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_codigo">Produto Código</label>
-                                    </div>
-                                    <c:choose>
-                                        <c:when test="${produtoEdita.produto_id != null}">
-                                            <input type="hidden" name="produto_id" value="${produtoEdita.produto_id}">
-                                        </c:when>
-                                    </c:choose>
-
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" id="produto_codigo"  name="produto_codigo" class="form-control" value="${produtoEdita.produto_codigo}" placeholder="EEAA123">
-                                            </div>
+                                <tr>
+                                    <td>${produto.produto_codigo}</td>
+                                    <td>${produto.produto_data_fabricacao}</td>
+                                    <td>${produto.produto_defeito_data_in}</td>
+                                    <td>${produto.produto_lote}</td>
+                                    <td>
+                                        <div class="button-demo">
+                                            <a href="/retestar?produto_defeito_id=${produto.produto_defeito_id}&produto_id=${produto.produto_id}" class="btn bg-green waves-effect">Novo Teste</a>
                                         </div>
-                                    </div>
-                                </div>
+                                    </td>
+                                </tr>
 
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_lote">Produto Lote</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="number" id="produto_lote"  name="produto_lote" class="form-control" value="${produtoEdita.produto_lote}" placeholder="0001">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </c:forEach>
 
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_data_fabricacao">Data Fabricação</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="date" id="produto_data_fabricacao"  name="produto_data_fabricacao" value="${produtoEdita.produto_data_fabricacao}" class="form-control" placeholder="0001">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
-                                        <label for="produto_tipo_id">Tipo do Produto</label>
-                                    </div>
-                                    <div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
-                                        <select id="produto_tipo_id" name="produto_tipo_id" class="form-control show-tick">
-                                            <%--<option value="">-- Please select --</option>--%>
-                                            <option value="1">A</option>
-                                            <option value="2">B</option>
-                                            <option value="3">C</option>
-                                            <option value="4">D</option>
-                                            <option value="5">E</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="row clearfix">
-                                    <div class="col-md-4 pull-right">
-                                        <button type="submit" class="btn btn-primary btn-block btn-lg waves-effect">Salvar</button>
-                                    </div>
-                                </div>
-                            </form>
-                    </div>
-                    <div>
-                      <span>${erro}
-                        ${salvo} </span>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -294,9 +242,21 @@
 <!-- Waves Effect Plugin Js -->
 <script src="/public/plugins/node-waves/waves.js"></script>
 
+<!-- Jquery DataTable Plugin Js -->
+<script src="/public/plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="/public/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+<script src="/public/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+
 <!-- Custom Js -->
 <script src="/public/js/admin.js"></script>
-
+<script src="/public/js/pages/tables/jquery-datatable.js"></script>
 <!-- Demo Js -->
 <script src="/public/js/demo.js"></script>
 </body>

@@ -126,6 +126,9 @@
                         <li>
                             <a href="/produtoteste">Produtos em teste</a>
                         </li>
+                        <li>
+                            <a href="/defeito">Produtos Dfeito</a>
+                        </li>
                     </ul>
                 </li>
 

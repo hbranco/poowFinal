@@ -111,7 +111,10 @@
                             <a href="/produto">Todos Produtos</a>
                         </li>
                         <li>
-                            <a href="/produtoteste">Produtos em teste</a>
+                            <a href="/produtoteste">Produtos Em Teste</a>
+                        </li>
+                        <li>
+                            <a href="/defeito">Produtos Dfeito</a>
                         </li>
                     </ul>
                 </li>

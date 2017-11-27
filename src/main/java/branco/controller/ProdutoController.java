@@ -40,7 +40,7 @@ public class ProdutoController {
             ProdutoTeste produtoTeste = new ProdutoTeste();
             produtoTeste.setProduto_teste_obs("Produto Novo Em Teste");
             produtoTeste.setProduto_id(Id);
-            produtoTeste.setProduto_teste_data_inicio("kk");
+            produtoTeste.setProduto_teste_data_inicio(produto.getProduto_data_fabricacao());
             produtoTeste.setProduto_teste_data_final("-");
             produtoTeste.setProduto_teste_tipo_id(1);
             daoPT.novoTeste(produtoTeste);

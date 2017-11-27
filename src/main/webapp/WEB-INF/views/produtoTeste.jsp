@@ -125,6 +125,9 @@
                         <li>
                             <a href="/produtoteste">Produtos em teste</a>
                         </li>
+                        <li>
+                            <a href="/defeito">Produtos Dfeito</a>
+                        </li>
 
                     </ul>
                 </li>
@@ -204,20 +207,11 @@
                                     <td>${produto.produto_teste_data_inicio}</td>
                                     <td>${produto.produto_lote}</td>
                                     <td>${produto.produto_teste_obs}</td>
-                                    <%--<td>${produto.produto_tipo_nome}</td>--%>
                                     <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <a href="/editaprodutoteste?id=${produto.produto_teste_id}" type="button" class="btn btn-info btn-block">Editar</a>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <a href="/finalizarteste?id=${produto.produto_teste_id}" type="button" class="btn btn-info btn-block">Finalizar Teste</a>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="col-md-6">
-                                                    <a href="/produtodefeito?id=${produto.produto_teste_id}" type="button" class="btn btn-info btn-block">Defeito</a>
-                                                </div>
-                                            </div>
+                                        <div class="button-demo">
+                                            <a href="/editaprodutoteste?id=${produto.produto_teste_id}"  class="btn bg-green waves-effect">Editar Teste</a>
+                                            <a href="/finalizarteste?teste_id=${produto.produto_teste_id}&produto_id=${produto.produto_id}" class="btn bg-info waves-effect">Finalizar Teste</a>
+                                            <a href="/produtodefeito?teste_id=${produto.produto_teste_id}&produto_id=${produto.produto_id}" class="btn bg-red waves-effect">Defeito</a>
                                         </div>
                                     </td>
                                 </tr>
