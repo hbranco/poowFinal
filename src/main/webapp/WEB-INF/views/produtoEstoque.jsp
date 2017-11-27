@@ -173,16 +173,16 @@
                             <thead>
                             <tr>
                                 <th>Código</th>
-                                <th>Data Inicio</th>
-                                <th>Lote</th>
+                                <th>Data Fabricação</th>
+                                <th>Data Estoque</th>
                                 <th>Ação</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>Código</th>
-                                <th>Data Inicio</th>
-                                <th>Data Entrada Estoque</th>
+                                <th>Data Fabricação</th>
+                                <th>Data Estoque</th>
                                 <th>Ação</th>
                             </tr>
                             </tfoot>

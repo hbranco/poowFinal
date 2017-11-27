@@ -26,6 +26,7 @@ public class DashboardController {
     model.addAttribute("defeito",daoPD.totalDefeito());
     model.addAttribute("estoque",daoPE.totalEstoque());
     model.addAttribute("teste",daoPT.totalTeste());
+    model.addAttribute("venvido", daoPE.totalVendido());
     return "dashboard";
 }
 

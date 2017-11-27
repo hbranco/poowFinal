@@ -192,6 +192,19 @@
             </div>
 
 
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-pink hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">playlist_add_check</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">PRODUTOS VENDIDOS</div>
+                        <div class="number count-to" data-from="0" data-to="${venvido}" data-speed="15" data-fresh-interval="20"></div>
+                    </div>
+                </div>
+            </div>
+
+
 
         </div>
     </div>

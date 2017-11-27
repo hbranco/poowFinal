@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Repository
 public class ProdutoDefeitoDAO {
@@ -57,6 +59,9 @@ public class ProdutoDefeitoDAO {
      */
 
     public boolean produtoConsertado(int produto_defeito_id, int produto_id) throws SQLException, ClassNotFoundException {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+
         String sql = "update produto_defeito set produto_defeito_conserto = '1' where produto_defeito_id = ? ";
         PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);
         statement.setInt(1,produto_defeito_id);
@@ -65,7 +70,7 @@ public class ProdutoDefeitoDAO {
         ProdutoTeste produtoTeste = new ProdutoTeste();
         produtoTeste.setProduto_teste_obs("Produto Consertado Em Teste");
         produtoTeste.setProduto_id(produto_id);
-        produtoTeste.setProduto_teste_data_inicio("-");
+        produtoTeste.setProduto_teste_data_inicio(simpleDateFormat.format(date).toString());
         produtoTeste.setProduto_teste_data_final("-");
         produtoTeste.setProduto_teste_tipo_id(1);
         daoPT.novoTeste(produtoTeste);

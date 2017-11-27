@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Repository
 public class ProdutoTesteDAO {
@@ -42,12 +44,14 @@ public class ProdutoTesteDAO {
      * @throws ClassNotFoundException
      */
     public Boolean novoTeste(ProdutoTeste produtoTeste) throws SQLException, ClassNotFoundException {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
         String sql = "insert into produto_teste (produto_teste_tipo_id, produto_teste_obs, produto_teste_data_inicio, produto_teste_data_final, produto_id, produto_teste_check)" +
                 "values(?,?,?,?,?,?)";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
         stmt.setInt(1,produtoTeste.getProduto_teste_tipo_id());
         stmt.setString(2, produtoTeste.getProduto_teste_obs());
-        stmt.setString(3,produtoTeste.getProduto_teste_data_inicio());
+        stmt.setString(3,simpleDateFormat.format(date).toString());
         stmt.setString(4,produtoTeste.getProduto_teste_data_final());
         stmt.setInt(5,produtoTeste.getProduto_id());
         stmt.setBoolean(6, false);

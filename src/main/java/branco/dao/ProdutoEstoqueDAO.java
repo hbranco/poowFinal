@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Repository
 public class ProdutoEstoqueDAO {
@@ -45,11 +47,14 @@ public class ProdutoEstoqueDAO {
 
 
     public Boolean produtoEstoque(int id) throws SQLException, ClassNotFoundException {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+
         String sql = "insert into produto_estoque (produto_id, produto_estoque_estoque, produto_estoque_data_entrada) values(?,?,?)";
         PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);
         statement.setInt(1,id);
         statement.setBoolean(2,false);
-        statement.setString(3,"-");
+        statement.setString(3,simpleDateFormat.format(date).toString());
         statement.execute();
         return true;
 
@@ -65,6 +70,25 @@ public class ProdutoEstoqueDAO {
                 "from produto_estoque\n" +
                 "join produto on produto_estoque.produto_id = produto.produto_id\n" +
                 "where produto_estoque.produto_estoque_estoque = '0' and produto.produto_deletado = '0'";
+        PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        if(rs.next()){
+            return  rs.getInt("total");
+        }
+
+        return 0;
+    }
+
+
+
+
+
+    public Integer totalVendido() throws SQLException, ClassNotFoundException {
+
+        String sql = "select count(*) as total\n" +
+                "from produto_estoque\n" +
+                "join produto on produto_estoque.produto_id = produto.produto_id\n" +
+                "where produto_estoque.produto_estoque_estoque = '1' and produto.produto_deletado = '0'";
         PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
         if(rs.next()){
