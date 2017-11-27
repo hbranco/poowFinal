@@ -14,9 +14,9 @@ public class IndexController {
 
     }
 
-    @RequestMapping("dashboard")
+    @RequestMapping("logout")
     public String home(){
-        return "dashboard";
+        return "redirect:/";
 
     }
 

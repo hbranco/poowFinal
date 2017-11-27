@@ -90,4 +90,21 @@ public class ProdutoDefeitoDAO {
         return true;
     }
 
+
+    public Integer totalDefeito() throws SQLException, ClassNotFoundException {
+
+        String sql = "SELECT count(*) as total\n" +
+                "FROM produto_defeito\n" +
+                "  JOIN produto ON produto_defeito.produto_id = produto.produto_id\n" +
+                "where produto_defeito.produto_defeito_conserto = '0' and produto.produto_deletado ='0'";
+        PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        if(rs.next()){
+            return  rs.getInt("total");
+        }
+
+        return 0;
+    }
+
+
 }

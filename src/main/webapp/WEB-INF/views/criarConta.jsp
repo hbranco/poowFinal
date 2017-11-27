@@ -12,8 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign Up | Bootstrap Based Admin Template - Material Design</title>
-    <!-- Favicon-->
+    <title>Controle Produção</title>    <!-- Favicon-->
     <link rel="icon" href="/public/images/Logo.png" type="image/x-icon">
 
     <!-- Google Fonts -->

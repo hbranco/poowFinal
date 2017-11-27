@@ -63,7 +63,7 @@
         <div class="navbar-header">
             <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
-            <a class="navbar-brand" href="index.html">Produção Controle</a>
+            <a class="navbar-brand" href="/dashboard">Produção Controle</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -157,11 +157,42 @@
                         <i class="material-icons">playlist_add_check</i>
                     </div>
                     <div class="content">
-                        <div class="text">NEW TASKS</div>
-                        <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
+                        <div class="text">PRODUTOS EM TESTE</div>
+                        <div class="number count-to" data-from="0" data-to="${teste}" data-speed="15" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-pink hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">playlist_add_check</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">PRODUTOS EM ESTOQUE</div>
+                        <div class="number count-to" data-from="0" data-to="${estoque}" data-speed="15" data-fresh-interval="20"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-pink hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">playlist_add_check</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">PRODUTOS AGUANDANDO CONSERTO</div>
+                        <div class="number count-to" data-from="0" data-to="${defeito}" data-speed="15" data-fresh-interval="20"></div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 

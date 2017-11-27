@@ -17,8 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Form Examples | Bootstrap Based Admin Template - Material Design</title>
-    <!-- Favicon-->
+    <title>Controle Produção</title>    <!-- Favicon-->
     <link rel="icon" href="/public/images/Logo.png" type="image/png">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
@@ -77,7 +76,7 @@
         <div class="navbar-header">
             <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
             <a href="javascript:void(0);" class="bars"></a>
-            <a class="navbar-brand" href="index.html">Produção Controle</a>
+            <a class="navbar-brand" href="/dashboard">Produção Controle</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -106,7 +105,7 @@
             <ul class="list">
                 <li class="header">MAIN NAVIGATION</li>
                 <li class="active">
-                    <a href="index.html">
+                    <a href="/dashboard">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
@@ -128,7 +127,7 @@
                             <a href="/produtoteste">Produtos em teste</a>
                         </li>
                         <li>
-                            <a href="/defeito">Produtos Dfeito</a>
+                            <a href="/defeito">Produtos Defeito</a>
                         </li>
                         <li>
                             <a href="/produtoestoque">Produtos Estoque</a>
@@ -168,18 +167,7 @@
                         <h2>
                             Criar/Editar um Produto
                         </h2>
-                        <ul class="header-dropdown m-r--5">
-                            <li class="dropdown">
-                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">more_vert</i>
-                                </a>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);">Action</a></li>
-                                    <li><a href="javascript:void(0);">Another action</a></li>
-                                    <li><a href="javascript:void(0);">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+
                     </div>
 
                     <div class="body">
@@ -269,9 +257,8 @@
                                 </div>
                             </form>
                     </div>
-                    <div>
-                      <span>${erro}
-                        ${salvo} </span>
+                    <div class="text-capitalize text-danger text-center">
+                      <span>${erro}</span>
                     </div>
                 </div>
             </div>

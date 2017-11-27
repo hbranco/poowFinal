@@ -59,6 +59,21 @@ public class ProdutoEstoqueDAO {
     }
 
 
+    public Integer totalEstoque() throws SQLException, ClassNotFoundException {
+
+        String sql = "select count(*) as total\n" +
+                "from produto_estoque\n" +
+                "join produto on produto_estoque.produto_id = produto.produto_id\n" +
+                "where produto_estoque.produto_estoque_estoque = '0' and produto.produto_deletado = '0'";
+        PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        if(rs.next()){
+            return  rs.getInt("total");
+        }
+
+        return 0;
+    }
+
 
 
 

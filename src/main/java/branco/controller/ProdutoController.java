@@ -46,7 +46,7 @@ public class ProdutoController {
             daoPT.novoTeste(produtoTeste);
 
             model.addAttribute("salvo", "Produto Salvo");
-            return "criarProduto";
+            return "redirect:/produtoTeste";
 
 
 
