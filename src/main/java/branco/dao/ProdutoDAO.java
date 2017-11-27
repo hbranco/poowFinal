@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 @Repository
@@ -23,16 +24,21 @@ public class ProdutoDAO {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public boolean setProduto(Produto produto) throws SQLException, ClassNotFoundException {
+    public Integer setProduto(Produto produto) throws SQLException, ClassNotFoundException {
         String sql = "insert into produto (produto_tipo_id, produto_codigo, produto_lote, produto_data_fabricacao) values(?,?,?,?)";
-        PreparedStatement stmt  = ConectaPostgres.getConexao().prepareStatement(sql);
+        PreparedStatement stmt  = ConectaPostgres.getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stmt.setInt(1, produto.getProduto_tipo_id());
         stmt.setString(2, produto.getProduto_codigo());
         stmt.setInt(3, produto.getProduto_lote());
         stmt.setString(4, produto.getProduto_data_fabricacao());
-        System.out.println("sql: " + stmt.toString());
         stmt.execute();
-        return true;
+        ResultSet numero = stmt.getGeneratedKeys();
+        if(numero.next()){
+            return numero.getInt(1);
+//           System.out.println(numero.getInt(1));
+        }
+        return 0;
+//        return true;
     }
 
 
@@ -100,10 +106,10 @@ public class ProdutoDAO {
      * @throws ClassNotFoundException
      */
     public Boolean deleteProduto(Integer id) throws SQLException, ClassNotFoundException {
-        String sql = "update produto set produto_deletado = '1' where = ?";
+        String sql = "update produto set produto_deletado = '1' where produto_id = ?";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
         stmt.setInt(1,id);
-        stmt.executeQuery();
+        stmt.executeUpdate();
         return true;
 
 
@@ -125,7 +131,7 @@ public class ProdutoDAO {
         stmt.setInt(3,produto.getProduto_lote());
         stmt.setString(4,produto.getProduto_data_fabricacao());
         stmt.setInt(5,produto.getProduto_id());
-        System.out.println("sql: " + stmt.toString());
+//        System.out.println("sql: " + stmt.toString());
         stmt.executeUpdate();
         return true;
 

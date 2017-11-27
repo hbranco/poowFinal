@@ -110,7 +110,9 @@
                         <li>
                             <a href="/produto">Todos Produtos</a>
                         </li>
-
+                        <li>
+                            <a href="/produtoteste">Produtos em teste</a>
+                        </li>
                     </ul>
                 </li>
 

@@ -123,7 +123,9 @@
                         <li>
                             <a href="/produto">Todos Produtos</a>
                         </li>
-
+                        <li>
+                            <a href="/produtoteste">Produtos em teste</a>
+                        </li>
                     </ul>
                 </li>
 
@@ -208,7 +210,7 @@
                                                 <a href="/editaproduto?id=${produto.produto_id}" type="button" class="btn btn-info btn-block">Editar</a>
                                             </div>
                                             <div class="col-md-6">
-                                                <button type="button" class="btn btn-danger btn-block">Excluir</button>
+                                                <a  href="/excluirproduto?id=${produto.produto_id}" type="button" class="btn btn-danger btn-block">Excluir</a>
                                             </div>
                                         </div>
 

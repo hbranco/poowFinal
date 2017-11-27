@@ -13,7 +13,7 @@ public class ConectaPostgres {
         String user = "postgres";
         String pass = "branco123";
         Connection conn = DriverManager.getConnection(url, user, pass);
-        System.out.println("oi");
+//        System.out.println("oi");
 
         return conn;
 
