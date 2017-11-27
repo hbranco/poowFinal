@@ -130,6 +130,9 @@
                         <li>
                             <a href="/defeito">Produtos Dfeito</a>
                         </li>
+                        <li>
+                            <a href="/produtoestoque">Produtos Estoque</a>
+                        </li>
                     </ul>
                 </li>
 

@@ -2,10 +2,9 @@
   Created by IntelliJ IDEA.
   User: branco
   Date: 26/11/17
-  Time: 18:22
+  Time: 21:26
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -129,9 +128,11 @@
                         <li>
                             <a href="/defeito">Produtos Dfeito</a>
                         </li>
+
                         <li>
                             <a href="/produtoestoque">Produtos Estoque</a>
                         </li>
+
                     </ul>
                 </li>
 
@@ -165,7 +166,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            TODOS OS PRODUTOS!
+                            PRODUTOS NO ESTOQUE!
                         </h2>
                         <ul class="header-dropdown m-r--5">
                             <li class="dropdown">
@@ -185,41 +186,32 @@
                             <thead>
                             <tr>
                                 <th>Código</th>
-                                <th>Data Fabricação</th>
+                                <th>Data Inicio</th>
                                 <th>Lote</th>
-                                <th>Tipo</th>
                                 <th>Ação</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>Código</th>
-                                <th>Data Fabricação</th>
-                                <th>Lote</th>
-                                <th>Tipo</th>
+                                <th>Data Inicio</th>
+                                <th>Data Entrada Estoque</th>
                                 <th>Ação</th>
                             </tr>
                             </tfoot>
                             <tbody>
 
 
-                            <c:forEach var="produto" items="${produtos}">
+                            <c:forEach var="produto" items="${produtoEstoque}">
 
                                 <tr>
                                     <td>${produto.produto_codigo}</td>
                                     <td>${produto.produto_data_fabricacao}</td>
-                                    <td>${produto.produto_lote}</td>
-                                    <td>${produto.produto_tipo_nome}</td>
+                                    <td>${produto.produto_estoque_dataentrada}</td>
                                     <td>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <a href="/editaproduto?id=${produto.produto_id}" type="button" class="btn btn-info btn-block">Editar</a>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <a  href="/excluirproduto?id=${produto.produto_id}" type="button" class="btn btn-danger btn-block">Excluir</a>
-                                            </div>
+                                        <div class="button-demo">
+                                            <a href="/vendido?id=${produto.produto_estoque_id}" class="btn bg-red waves-effect">Vendido!</a>
                                         </div>
-
                                     </td>
                                 </tr>
 

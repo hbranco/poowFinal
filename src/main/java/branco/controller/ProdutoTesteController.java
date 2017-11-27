@@ -2,6 +2,7 @@ package branco.controller;
 
 
 import branco.dao.ProdutoDefeitoDAO;
+import branco.dao.ProdutoEstoqueDAO;
 import branco.dao.ProdutoTesteDAO;
 import branco.model.ProdutoTeste;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class ProdutoTesteController {
     ProdutoTesteDAO daoPT;
     @Autowired
     ProdutoDefeitoDAO daoDF;
+    @Autowired
+    ProdutoEstoqueDAO daoPE;
 
     @RequestMapping("/produtoteste")
     public String getProdutoTeste(Model model) throws SQLException, ClassNotFoundException {
@@ -47,6 +50,7 @@ public class ProdutoTesteController {
     @RequestMapping("/finalizarteste")
     public String finalizarTeste(@RequestParam int teste_id, @RequestParam int produto_id,Model model) throws SQLException, ClassNotFoundException {
         if(daoPT.finalizarTeste(teste_id)){
+            daoPE.produtoEstoque(produto_id);
             return "redirect:produtoteste";
         }
 
