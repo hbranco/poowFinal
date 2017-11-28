@@ -22,6 +22,14 @@ public class ProdutoEstoqueController {
     @Autowired
     ProdutoEstoqueDAO daoPE;
 
+
+    /**
+     * metodo que retorna todos os produtos na fila de teste
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/produtoestoque")
     public  String getProdutoEstoque(Model model) throws SQLException, ClassNotFoundException {
         model.addAttribute("produtoEstoque",daoPE.getProdutoEstoque());
@@ -35,6 +43,14 @@ public class ProdutoEstoqueController {
     }
 
 
+    /**
+     * Metodo que muda o status de um produto de Estoque para Vendido
+     * @param id
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/vendido")
     public String updateProdutoEstoque(@RequestParam int id, Model model) throws SQLException, ClassNotFoundException {
         if(usuarioLogado.getUsuario() != null){

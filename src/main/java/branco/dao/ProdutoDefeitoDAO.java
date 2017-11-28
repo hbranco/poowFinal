@@ -99,6 +99,12 @@ public class ProdutoDefeitoDAO {
     }
 
 
+    /**
+     * Metodo que trás o total de produtos na fila de defeito
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Integer totalDefeito() throws SQLException, ClassNotFoundException {
 
         String sql = "SELECT count(*) as total\n" +

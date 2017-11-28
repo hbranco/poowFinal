@@ -28,7 +28,15 @@ public class UsuarioController {
     UsuarioBean usuarioBean;
 
 
-
+    /**
+     * Metodo de autenticação do usuario
+     * @param usuario
+     * @param result
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/autenticar")
     public String autenticar(@Valid Usuario usuario, BindingResult result, Model model) throws SQLException, ClassNotFoundException {
        if(result.hasErrors()){
@@ -48,6 +56,10 @@ public class UsuarioController {
     }
 
 
+    /**
+     * Metodo que retorna  a view para criar usuario
+     * @return
+     */
     @GetMapping("/novousuario")
     public String novoUsuario(){
         return "criarConta";
@@ -55,6 +67,14 @@ public class UsuarioController {
     }
 
 
+    /**
+     * Metodo para cadastrar um novo usuario
+     * @param usuario
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @PostMapping("/cadastrarusuario")
     public String cadastrarUsuario(Usuario usuario, Model model) throws SQLException, ClassNotFoundException {
         if(daoU.cadastrar(usuario)){

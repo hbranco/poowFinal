@@ -21,6 +21,14 @@ public class ProdutoDefeitoController {
     @Autowired
     UsuarioBean usuarioLogado;
 
+
+    /**
+     * Metodo que retorna todos os produtos na fila de defeito
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/defeito")
     public String getProdutoDefeito(Model model) throws SQLException, ClassNotFoundException {
         if(usuarioLogado.getUsuario() != null){
@@ -33,7 +41,15 @@ public class ProdutoDefeitoController {
     }
 
 
-
+    /**
+     * Metodo que move um produto da fila de defeito para a fila de teste
+     * @param produto_defeito_id
+     * @param produto_id
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/retestar")
     public String novoTeste(@RequestParam int produto_defeito_id, @RequestParam int produto_id, Model model) throws SQLException, ClassNotFoundException {
         if(usuarioLogado.getUsuario() != null){

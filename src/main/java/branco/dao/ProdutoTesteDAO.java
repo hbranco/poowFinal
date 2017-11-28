@@ -93,6 +93,13 @@ public class ProdutoTesteDAO {
     }
 
 
+    /**
+     * busca um unico produto da fila de teste
+     * @param id
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     public ProdutoTeste getProdutoEmTeste(int id) throws SQLException, ClassNotFoundException {
         String sql = "SELECT *\n" +
@@ -119,6 +126,13 @@ public class ProdutoTesteDAO {
     }
 
 
+    /**
+     * metodo que finaliza um teste
+     * @param teste_id
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean finalizarTeste(int teste_id) throws SQLException, ClassNotFoundException {
         String sql = "update produto_teste set produto_teste_check = true where produto_teste_id = ?";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
@@ -128,7 +142,12 @@ public class ProdutoTesteDAO {
     }
 
 
-
+    /**
+     * metodo que retorna a quantidade de produtos em teste
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Integer totalTeste() throws SQLException, ClassNotFoundException {
 
         String sql = "SELECT count(*) as total\n" +

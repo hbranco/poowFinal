@@ -14,6 +14,12 @@ import java.util.Date;
 public class ProdutoEstoqueDAO {
 
 
+    /**
+     * Metodo que lista os produtos do banco
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<ProdutoEstoque> getProdutoEstoque() throws SQLException, ClassNotFoundException {
         ArrayList<ProdutoEstoque> produtoEstoques = new ArrayList<>();
 
@@ -36,6 +42,13 @@ public class ProdutoEstoqueDAO {
     }
 
 
+    /**
+     * Metodo que move o produto da fila de estoque para vendido
+     * @param id
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public Boolean produtoVendido(int id) throws SQLException, ClassNotFoundException {
         String sql = "update produto_estoque set produto_estoque_estoque = '1' where produto_estoque_id = ?";
         PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);

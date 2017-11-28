@@ -17,12 +17,21 @@ public class IndexController {
     @Autowired
     UsuarioBean usuarioLogado;
 
+    /**
+     * metodo que retorna a tela de login
+     * @param m
+     * @return
+     */
     @RequestMapping("/")
     public String index(Model m){
         return "index";
     }
 
 
+    /**
+     * metodo que faz logut do sistema
+     * @return
+     */
     @RequestMapping("logout")
     public String home(){
             usuarioLogado.setUsuario(null);

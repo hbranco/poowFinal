@@ -29,6 +29,13 @@ public class ProdutoTesteController {
     @Autowired
     UsuarioBean usuarioLogado;
 
+    /**
+     * Metodo que retorna todos os produtos da fila de teste
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/produtoteste")
     public String getProdutoTeste(Model model) throws SQLException, ClassNotFoundException {
         if(usuarioLogado.getUsuario() != null){
@@ -43,6 +50,14 @@ public class ProdutoTesteController {
     }
 
 
+    /**
+     * Metodo que retorna a view de edição do produto
+     * @param id
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @RequestMapping("/editaprodutoteste")
     public String getProdutoTesteForm(@RequestParam int id, Model model) throws SQLException, ClassNotFoundException {
@@ -57,6 +72,14 @@ public class ProdutoTesteController {
 
     }
 
+    /**
+     * metodo para salvar a edição do projeto
+     * @param produtoTeste
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/salvarEditaTeste")
     public String updateTeste(ProdutoTeste produtoTeste, Model model) throws SQLException, ClassNotFoundException {
         if(usuarioLogado.getUsuario() != null){
@@ -75,6 +98,15 @@ public class ProdutoTesteController {
     }
 
 
+    /**
+     * Metodo para finalziar o teste e mover para a fila de estoque
+     * @param teste_id
+     * @param produto_id
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/finalizarteste")
     public String finalizarTeste(@RequestParam int teste_id, @RequestParam int produto_id,Model model) throws SQLException, ClassNotFoundException {
         if(usuarioLogado.getUsuario() != null){
@@ -91,6 +123,15 @@ public class ProdutoTesteController {
     }
 
 
+    /**
+     * Metodo que move o produto da fila de testes e move para fila de defeito
+     * @param teste_id
+     * @param produto_id
+     * @param model
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/produtodefeito")
     public String produtoDefeito(@RequestParam int teste_id, @RequestParam int produto_id,Model model) throws SQLException, ClassNotFoundException {
         if (usuarioLogado.getUsuario() != null) {

@@ -28,7 +28,14 @@ public class DashboardController {
     UsuarioBean usuarioLogado;
 
 
-
+    /**
+     * Metodo que retorna a view com a dashboard(tela inicial)
+     * @param model
+     * @param httpSessionMutexListener
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @RequestMapping("/dashboard")
     public String inicio(Model model, HttpSessionMutexListener httpSessionMutexListener) throws SQLException, ClassNotFoundException {
         if(usuarioLogado.getUsuario() != null){

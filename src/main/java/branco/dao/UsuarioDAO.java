@@ -13,6 +13,13 @@ import java.sql.SQLException;
 public class UsuarioDAO {
 
 
+    /**
+     * metodo para validar um usuario
+     * @param usuario
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean autentica(Usuario usuario) throws SQLException, ClassNotFoundException {
         String sql = "select * from usuario where usuario_nome = ? and usuario_senha = ?";
         PreparedStatement stmt = ConectaPostgres.getConexao().prepareStatement(sql);
@@ -28,6 +35,13 @@ public class UsuarioDAO {
 
     }
 
+    /**
+     * metodo para cadastrar um novo usuario
+     * @param usuario
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     public boolean cadastrar(Usuario usuario) throws SQLException, ClassNotFoundException {
         String sql = "insert into usuario (usuario_nome, usuario_senha) values (?,?)";

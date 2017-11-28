@@ -68,7 +68,6 @@ public class ProdutoController {
         }else{
             return "redirect:/";
         }
-
     }
 
 
@@ -81,8 +80,6 @@ public class ProdutoController {
         }else{
             return "redirect:/";
         }
-
-
     }
 
     @RequestMapping("/editaproduto")
@@ -113,8 +110,6 @@ public class ProdutoController {
         }else{
             return "redirect:/";
         }
-
-
     }
 
     @RequestMapping("/salvarProdutoEdita")
@@ -133,10 +128,5 @@ public class ProdutoController {
         }else{
             return "redirect:/";
         }
-
-
-
     }
-
-
 }
