@@ -1,9 +1,11 @@
 package branco.controller;
 
 
+import branco.bean.UsuarioBean;
 import branco.dao.UsuarioDAO;
 import branco.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,22 +19,26 @@ import java.sql.SQLException;
 
 
 @Controller
+@Scope("session")
 public class UsuarioController {
 
     @Autowired UsuarioDAO daoU;
 
+    @Autowired
+    UsuarioBean usuarioBean;
+
+
+
     @RequestMapping("/autenticar")
     public String autenticar(@Valid Usuario usuario, BindingResult result, Model model) throws SQLException, ClassNotFoundException {
        if(result.hasErrors()){
-
            model.addAttribute("erroSenha", "a senha deve conter 6 digitos");
-
            return "index";
 
        }else {
            if(daoU.autentica(usuario)){
                model.addAttribute("usuario", usuario);
-//               redirectAttributes.addAttribute("usuario", usuario);
+               usuarioBean.setUsuario(usuario);
                return "redirect:dashboard";
            }else {
                model.addAttribute("usuarioInvalido", "usuário não encontrado!");
@@ -52,7 +58,6 @@ public class UsuarioController {
     @PostMapping("/cadastrarusuario")
     public String cadastrarUsuario(Usuario usuario, Model model) throws SQLException, ClassNotFoundException {
         if(daoU.cadastrar(usuario)){
-
             model.addAttribute("usuario", usuario);
             return "index";
 

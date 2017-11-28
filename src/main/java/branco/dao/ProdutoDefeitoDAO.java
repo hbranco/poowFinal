@@ -87,10 +87,13 @@ public class ProdutoDefeitoDAO {
      * @throws ClassNotFoundException
      */
     public boolean produtoComDefeito(int id) throws SQLException, ClassNotFoundException {
-        String sql = "insert into produto_defeito (produto_id, produto_defeito_conserto) values(?,?)";
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        String sql = "insert into produto_defeito (produto_id, produto_defeito_conserto, produto_defeito_data_in) values(?,?,?)";
         PreparedStatement statement = ConectaPostgres.getConexao().prepareStatement(sql);
         statement.setInt(1,id);
         statement.setBoolean(2,false);
+        statement.setString(3,simpleDateFormat.format(date));
         statement.execute();
         return true;
     }
